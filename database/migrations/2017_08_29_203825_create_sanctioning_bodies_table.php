@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventsTable extends Migration
+class CreateSanctioningBodiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('sanctioning_bodies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->date('eventDate');
-            $table->integer('sanctioningBody_id')->unsigned();
+            $table->string('acronymOveride')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('events');
+        Schema::drop('sanctioning_bodies');
     }
 }

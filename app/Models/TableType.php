@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Event extends Model
+class TableType extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Event extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'events';
+    protected $table = 'table_types';
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'eventDate','sanctioningBody_id'];
+    protected $fillable = ['name','seats'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,10 +34,6 @@ class Event extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sanctioning_body()
-    {
-        return $this->belongsTo('App\Models\SanctioningBody', 'sanctioningBody_id');
-    }
 
     /*
     |--------------------------------------------------------------------------

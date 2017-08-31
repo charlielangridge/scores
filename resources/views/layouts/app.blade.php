@@ -52,6 +52,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @can('view admin')
+                                    <li>
+                                        <a href="{{url('/admin')}}">Admin</a>
+                                    </li>
+                                    @endcan
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

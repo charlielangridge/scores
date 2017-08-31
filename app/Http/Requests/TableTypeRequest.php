@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class EventRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
+class TableTypeRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class EventRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
             'name' => 'required|min:5|max:255',
-            'eventDate' => 'date',
-            'sanctioningBody_id' => 'required|integer',
+            'seats' => 'required|integer',
         ];
     }
 

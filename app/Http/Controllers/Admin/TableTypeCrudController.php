@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\EventRequest as StoreRequest;
-use App\Http\Requests\EventRequest as UpdateRequest;
+use App\Http\Requests\TableTypeRequest as StoreRequest;
+use App\Http\Requests\TableTypeRequest as UpdateRequest;
 
-class EventCrudController extends CrudController
+class TableTypeCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class EventCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Event');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/event');
-        $this->crud->setEntityNameStrings('event', 'events');
+        $this->crud->setModel('App\Models\TableType');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/tableType');
+        $this->crud->setEntityNameStrings('table type', 'table types');
 
         /*
         |--------------------------------------------------------------------------
@@ -35,25 +35,14 @@ class EventCrudController extends CrudController
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
-        $this->crud->addField([   // date_picker
-           'name' => 'eventDate',
-           'type' => 'date_picker',
-           'label' => 'Date',
-           // optional:
-           'date_picker_options' => [
-              'todayBtn' => true,
-              'format' => 'dd-mm-yyyy',
-              'language' => 'en'
-           ],
-        ]);
-
-        $this->crud->addField([  // Select2
-           'label' => "Sanctioning Body",
-           'type' => 'select2',
-           'name' => 'sanctioningBody_id', // the db column for the foreign key
-           'entity' => 'sanctioning_body', // the method that defines the relationship in your Model
-           'attribute' => 'name', // foreign key attribute that is shown to user
-           'model' => "App\Models\SanctioningBody" // foreign key model
+        $this->crud->addField([   // Number
+            'name' => 'seats',
+            'label' => 'Seats',
+            'type' => 'number',
+            // optionals
+            'attributes' => ["step" => "1", "min" => "1"], // allow decimals
+            // 'prefix' => "$",
+            // 'suffix' => ".00",
         ]);
 
 
@@ -64,17 +53,6 @@ class EventCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
-        $this->crud->setColumnDetails('eventDate', ['label' => 'Date']); // adjusts the properties of the passed in column (by name)
-        $this->crud->setColumnDetails('sanctioningBody_id', [
-           // 1-n relationship
-           'label' => "Sanctioning Body", // Table column heading
-           'type' => "select",
-           'name' => 'sanctioningBody_id', // the column that contains the ID of that connected entity;
-           'entity' => 'sanctioning_body', // the method that defines the relationship in your Model
-           'attribute' => "name", // foreign key attribute that is shown to user
-           'model' => "App\Models\SanctioningBody", // foreign key model
-        ]); // adjusts the properties of the passed in column (by name)
-
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
