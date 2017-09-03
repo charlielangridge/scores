@@ -21,6 +21,7 @@
 					<li><a href="{{ url('admin/event') }}"><i class="fa fa-calendar"></i> <span>Manage Events</span></a></li>
 					<li><a href="{{ url('admin/judge') }}"><i class="fa fa-gavel"></i> <span>Manage Judges</span></a></li>
 					<li><a href="{{ url('admin/sanctioningBody') }}"><i class="fa fa-trophy"></i> <span>Manage Sanctioning Bodies</span></a></li>
+					<li><a href="{{ url('admin/tableRule') }}"><i class="fa fa-user"></i> <span>Manage Table Rules</span></a></li>
 					<li><a href="{{ url('admin/tableType') }}"><i class="fa fa-user"></i> <span>Manage Table Types</span></a></li>
 					<li><a href="{{ url('admin/team') }}"><i class="fa fa-users"></i> <span>Manage Teams</span></a></li>
 				@endcan

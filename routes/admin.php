@@ -5,4 +5,5 @@ CRUD::resource('event', 'EventCrudController');
 CRUD::resource('judge', 'JudgeCrudController');
 CRUD::resource('sanctioningBody', 'SanctioningBodyCrudController');
 CRUD::resource('team', 'TeamCrudController');
+CRUD::resource('tableRule', 'TableRuleCrudController');
 CRUD::resource('tableType', 'TableTypeCrudController');

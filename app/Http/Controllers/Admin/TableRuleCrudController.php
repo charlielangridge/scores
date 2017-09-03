@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\TableTypeRequest as StoreRequest;
-use App\Http\Requests\TableTypeRequest as UpdateRequest;
+use App\Http\Requests\TableRuleRequest as StoreRequest;
+use App\Http\Requests\TableRuleRequest as UpdateRequest;
 
-class TableTypeCrudController extends CrudController
+class TableRuleCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class TableTypeCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\TableType');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/tableType');
-        $this->crud->setEntityNameStrings('table type', 'table types');
+        $this->crud->setModel('App\Models\TableRule');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/tableRule');
+        $this->crud->setEntityNameStrings('table rule', 'table rules');
 
         /*
         |--------------------------------------------------------------------------
@@ -35,34 +35,6 @@ class TableTypeCrudController extends CrudController
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
-        $this->crud->addField([   // Number
-            'name' => 'seats',
-            'label' => 'Seats',
-            'type' => 'number',
-            // optionals
-            'attributes' => ["step" => "1", "min" => "1"], // allow decimals
-            // 'prefix' => "$",
-            // 'suffix' => ".00",
-        ]);
-        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-            'label' => "Rules",
-            'type' => 'select2_multiple',
-            'name' => 'rules', // the method that defines the relationship in your Model
-            'entity' => 'rules', // the method that defines the relationship in your Model
-            'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => "App\Models\TableRule", // foreign key model
-            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-        ]);
-        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-            'label' => "Sanctioning Bodies",
-            'type' => 'select2_multiple',
-            'name' => 'sanctioning_bodies', // the method that defines the relationship in your Model
-            'entity' => 'sanctioning_bodies', // the method that defines the relationship in your Model
-            'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => "App\Models\SanctioningBody", // foreign key model
-            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-        ]);
-
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -71,25 +43,6 @@ class TableTypeCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
-        $this->crud->addColumn([
-           // n-n relationship (with pivot table)
-           'label' => "Rules", // Table column heading
-           'type' => "select_multiple",
-           'name' => 'rules', // the method that defines the relationship in your Model
-           'entity' => 'rules', // the method that defines the relationship in your Model
-           'attribute' => "name", // foreign key attribute that is shown to user
-           'model' => "App\Models\TableRule", // foreign key model
-        ]);
-
-        $this->crud->addColumn([
-           // n-n relationship (with pivot table)
-           'label' => "Sanctioning Bodies", // Table column heading
-           'type' => "select_multiple",
-           'name' => 'sanctioning_bodies', // the method that defines the relationship in your Model
-           'entity' => 'sanctioning_bodies', // the method that defines the relationship in your Model
-           'attribute' => "Acronym", // foreign key attribute that is shown to user
-           'model' => "App\Models\SanctioningBody", // foreign key model
-        ]);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;

@@ -49,6 +49,10 @@ class SanctioningBody extends Model
     {
         return $this->hasMany('App\Models\Event');
     }
+    public function table_types()
+    {
+        return $this->belongsToMany('App\Models\SanctioningBody', 'sanctioning_body_table_type', 'sb_id', 'table_type_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

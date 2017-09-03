@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class TableType extends Model
+class TableRule extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class TableType extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'table_types';
+    protected $table = 'table_rules';
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name','seats'];
+    protected $fillable = ['name','rules'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,13 +34,9 @@ class TableType extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function rules()
+    public function tables()
     {
-        return $this->belongsToMany('App\Models\TableRule');
-    }
-    public function sanctioning_bodies()
-    {
-        return $this->belongsToMany('App\Models\SanctioningBody', 'sanctioning_body_table_type', 'table_type_id', 'sb_id');
+        return $this->belongsToMany('App\Models\TableType');
     }
     /*
     |--------------------------------------------------------------------------
